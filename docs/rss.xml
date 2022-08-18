@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chaleaoch&#39;s Blog</title>
+    <link>https://chaleaoch.com/</link>
+    <description>Recent content on Chaleaoch&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 17 Aug 2022 13:58:22 +0900</lastBuildDate><atom:link href="https://chaleaoch.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>https://chaleaoch.com/post/hello-world/</link>
+      <pubDate>Wed, 17 Aug 2022 13:58:22 +0900</pubDate>
+      
+      <guid>https://chaleaoch.com/post/hello-world/</guid>
+      <description>sdl;fkhasdfhaskldjfhaskldjfhaskldjhfaslkdfjhskldjhdfklajsh</description>
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://chaleaoch.com/posts/hello-world/</link>
+      <pubDate>Wed, 17 Aug 2022 13:58:22 +0900</pubDate>
+      
+      <guid>https://chaleaoch.com/posts/hello-world/</guid>
+      <description>sdl;fkhasdfhaskldjfhaskldjfhaskldjhfaslkdfjhskldjhdfklajsh</description>
+    </item>
+    
+    <item>
+      <title>关于 Hugo NexT 组织</title>
+      <link>https://chaleaoch.com/about.html</link>
+      <pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/about.html</guid>
+      <description>Hugo NexT 组织是由众多喜爱 NexT 主题及风格的世界各地友人共同组建而成，为的就是让这个主题继续在 Hugo 引擎中也能得到发扬光大，在此也欢迎你的加入！ 我们的愿景</description>
+    </item>
+    
+    <item>
+      <title>支持 Emoji 表情</title>
+      <link>https://chaleaoch.com/post/emoji-support.html</link>
+      <pubDate>Sat, 04 Jun 2022 19:46:45 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/emoji-support.html</guid>
+      <description>&lt;p&gt;Emoji 可以通过多种方式在 Hugo 项目中启用。&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://gohugo.io/functions/emojify/&#34; title=&#34;&amp;lt;code&amp;gt;emojify&amp;lt;/code&amp;gt;&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    &lt;code&gt;emojify&lt;/code&gt;
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt; 方法可以直接在模板中调用, 或者使用
+&lt;a href=&#34;https://gohugo.io/templates/shortcode-templates#inline-shortcodes&#34; title=&#34;行内 Shortcodes&#34; rel=&#34;noopener external nofollow noreferrer&#34; target=&#34;_blank&#34; class=&#34; exturl&#34;&gt;
+    行内 Shortcodes
+    &lt;i class=&#34;fa fa-external-link-alt&#34;&gt;&lt;/i&gt;
+&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;dfasdfsadl;fkjaslk;dfjsal;kfdjs;lakjdfl;askdjfl;skdjfl;skjdfl;skjdfl;skajdfl;skjdfl;skjdf;lsakjdflk;j
+然后你就可以直接在文章中输入 emoji 的代码。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>站点示例</title>
+      <link>https://chaleaoch.com/flinks.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://chaleaoch.com/flinks.html</guid>
+      <description>如想要交换友情链接，请在评论区留下你的站点信息，格式参考如下： 名称： NexT 主题 说明： 保持简单的易用性和强大的功能。 站标： https://hugo-next.eu.org/imgs/hugo_next_avatar.png 网址： https://hugo-next.eu.org</description>
+    </item>
+    
+  </channel>
+</rss>
