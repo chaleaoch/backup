@@ -9,10 +9,10 @@
     <lastBuildDate>Fri, 19 Aug 2022 08:41:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一个不带插件的flask应用</title>
-      <link>https://chaleaoch.com/post/emoji-support/</link>
+      <link>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8/</link>
       <pubDate>Fri, 19 Aug 2022 08:41:00 +0800</pubDate>
       
-      <guid>https://chaleaoch.com/post/emoji-support/</guid>
+      <guid>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8/</guid>
       <description>起因 事情的起因是这样的, 曾经维护过一个别人做的 flask 项目,引用了大量的插件, 在维护过程中需要调查插件的源码来解决问题, 发现有的插件功能很单一,但</description>
     </item>
     
@@ -22,7 +22,7 @@
       <pubDate>Wed, 17 Aug 2022 13:58:22 +0900</pubDate>
       
       <guid>https://chaleaoch.com/post/hello-world/</guid>
-      <description>sdl;fkhasdfhaskldjfhaskldjfhaskldjhfaslkdfjhskldjhdfklajsh</description>
+      <description>hello world!</description>
     </item>
     
     <item>

@@ -3,7 +3,7 @@
   
   <entry>
     <title>一个不带插件的flask应用</title>
-    <url>https://chaleaoch.com/post/emoji-support/</url>
+    <url>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8/</url>
     <categories><category>default</category>
     </categories>
     <tags>
@@ -31,7 +31,7 @@ flask apscheduler 再譬如 scheduler src/extentioons.py
     </categories>
     <tags>
     </tags>
-    <content type="html"><![CDATA[sdl;fkhasdfhaskldjfhaskldjfhaskldjhfaslkdfjhskldjhdfklajsh
+    <content type="html"><![CDATA[hello world!
 ]]></content>
   </entry>
   
