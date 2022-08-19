@@ -163,10 +163,10 @@ params:
   # 不同尺寸站点图标
   # Different size of favicon
   favicon:
-    icon: /imgs/icons/favicon.ico
-    small: /imgs/icons/favicon_16x16_next.png
-    medium: /imgs/icons/favicon_32_32_next.png
-    appleTouchIcon: /imgs/icons/apple_touch_icon_next.png
+    icon: /imgs/icons/16.ico
+    small: /imgs/icons/16.ico
+    medium: /imgs/icons/32.png
+    appleTouchIcon: /imgs/icons/128.png
 
   # 自定义 Logo （目前只支持 Mist 页面模式）
   # Custom Logo (Warning: Only support scheme Mist)
@@ -253,7 +253,7 @@ params:
   avatar:
     # 设置显示头像的相对路径
     # Replace the default image and set the url here.
-    url: /imgs/hugo_next_avatar.png
+    url: /imgs/128.png
     # 开启头像的圆形显示效果
     # If true, the avatar will be displayed in circle.
     rounded: true
