@@ -579,7 +579,7 @@ params:
     enable: true
     # 你的 Github 仓库地址
     # Your repository url on Github.
-    permalink: https://github.com/hugo-next
+    permalink: https://github.com/chaleaoch
     # 关注说明
     # Show this title when cursor move on.
     title: Follow me on GitHub
