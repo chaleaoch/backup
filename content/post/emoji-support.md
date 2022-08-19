@@ -1,202 +1,143 @@
 ---
-title: "支持 Emoji 表情"
-description: "Hugo 和 NexT 中的 Emoji 的用法指南。"
-keywords: "Hugo,NexT,Emoji"
-
-date: 2022-06-04T19:46:45+08:00
-lastmod: 2022-06-04T19:46:45+08:00
+title: "一个不带插件的flask应用"
+description: "一个不带插件的flask应用"
+keywords: "flask,插件"
+date: 2022-08-19T08:41:00+08:00
+lastmod: 2022-08-19T08:41:00+08:00
 
 categories:
- - 示例
+  - default
 tags:
- - 表情
- - emoji
-
-toc: false
-url: "post/emoji-support.html"
+  - flask
+  - python
+# Post's origin author name
+#author:
+# Post's origin link URL
+#link:
+# Image source link that will use in open graph and twitter card
+#imgs:
+# Expand content on the home page
+#expand: true
+# It's means that will redirecting to external links
+#extlink:
+# Switch to enabled or disabled comment plugins in this post
+#comment:
+# enable: false
+# Enable table of content
+#toc: false
+# Absolute link for visit
+#url: "{{ lower .Name }}.html"
+# Sticky post set-top in home page and the smaller nubmer will more forward.
+#weight: 1
 ---
 
-Emoji 可以通过多种方式在 Hugo 项目中启用。
+# 起因
 
-[`emojify`](https://gohugo.io/functions/emojify/) 方法可以直接在模板中调用, 或者使用[行内 Shortcodes](https://gohugo.io/templates/shortcode-templates#inline-shortcodes).
+事情的起因是这样的, 曾经维护过一个别人做的 flask 项目,引用了大量的插件, 在维护过程中需要调查插件的源码来解决问题, 发现有的插件功能很单一,但是却写的很复杂(因为开源插件要考虑各种实际使用场景). 有时间精力还不如自己写一个. 恰好得到一个从零开始的项目. 决定尝试做一个零插件的 flask 项目. 目前来看效果还不错.
 
-dfasdfsadl;fkjaslk;dfjsal;kfdjs;lakjdfl;askdjfl;skdjfl;skjdfl;skjdfl;skajdfl;skjdfl;skjdf;lsakjdflk;j
-然后你就可以直接在文章中输入 emoji 的代码。
+> 需要说明的是: 这里的零插件是指零 flask 插件,不是不用任何 python 插件.
 
-<!--more-->
+# 项目构成
 
-它们以**冒号**开头和结尾，并且包含 emoji 的 **代码**：
+一个很简单的 dashboard, 主要用到如下组件
 
-```markdown
-去露营啦! {:}tent: 很快就回来.
-
-真开心! {:}joy:
+```txt
+python = "~3.10"
+Flask = "~2.1.1"
+python-dotenv = "~0.20.0"
+pydantic = "~1.9.0"
+requests = "~2.27.1"
+peewee = "~3.14.10"
+arrow = "~1.2.2"
+psycopg2 = "~2.9.3"
+wtf-peewee = "~3.0.4"
+APScheduler = "~3.9.1"
+redis = "~4.3.3"
+SQLAlchemy = "~1.4.37"
+gunicorn = "~20.1.0"
+Cython = "^0.29.30"
 ```
 
-呈现的输出效果如下:
+可能用到的 flask 插件是: `flask-redis`, `flask-sqlalchemy`, `flask-peewee`,`flask-pydantic`
 
-去露营啦! :tent: 很快就回来。
+## flask-redis
 
-真开心! :joy:
+先说 flask-redis
+src/extentions.py
 
-以下**符号清单**是 emoji 代码的非常有用的参考。
+```python
+from redis import Redis
+class FlaskRedis:
+    def __init__(self) -> None:
+        self.client = None
 
-## 表情与情感
+    def init(self, app):
+        self.client = Redis.from_url(app.config["REDIS_URL"])
+redis_client = FlaskRedis()
+```
 
-### 笑脸表情
+只需要在需要的地方
 
-| 图标 | 代码 | 图标 | 代码 |
-| :-: | - | :-: | - |
-| :grinning: | `grinning` | :smiley: | `smiley` |
-| :smile: | `smile` | :grin: | `grin` |
-| :laughing: | `laughing` <br /> `satisfied` | :sweat_smile: | `sweat_smile` |
-| :rofl: | `rofl` | :joy: | `joy` |
-| :slightly_smiling_face: | `slightly_smiling_face` | :upside_down_face: | `upside_down_face` |
-| :wink: | `wink` | :blush: | `blush` |
-| :innocent: | `innocent` | | |
+```python
+from extensions import redis_client
 
-### 爱意表情
+def get_redis_data(key) -> list[Any] | dict[Any, Any] | None:
+    ret = redis_client.client.get(f"{key}")
+```
 
-| 图标 | 代码 | 图标 | 代码 |
-| :-: | - | :-: | - |
-| :heart_eyes: | `heart_eyes` | :kissing_heart: | `kissing_heart` |
-| :kissing: | `kissing` | :relaxed: | `relaxed` |
-| :kissing_closed_eyes: | `kissing_closed_eyes` | :kissing_smiling_eyes: | `kissing_smiling_eyes` |
+是不是超级简单,完全满足项目需要. 也不需要记忆开源插件的配置.
 
-### 吐舌头表情
+# flask apscheduler
 
-| 图标 | 代码 | 图标 | 代码 |
-| :-: | - | :-: | - |
-| :yum: | `yum` | :stuck_out_tongue: | `stuck_out_tongue` |
-| :stuck_out_tongue_winking_eye: | `stuck_out_tongue_winking_eye` | :stuck_out_tongue_closed_eyes: | `stuck_out_tongue_closed_eyes` |
-| :money_mouth_face: | `money_mouth_face` | | |
+再譬如 scheduler
+src/extentioons.py
+
+```python
+from apscheduler.schedulers.blocking import BlockingScheduler
+class FlaskScheduler:
+    def init(self, app):
+        scheduler = BlockingScheduler()
+
+        scheduler.configure(**app.config["SCHEDULER_OPTIONS"])
+
+        jobs = app.config.get("SCHEDULER_JOBS", [])
+        for job in jobs:
+            scheduler.add_job(**job)
+        self.scheduler = scheduler
+scheduler = FlaskScheduler()
+```
+
+当然,这里需要在 create_app 中 init 一下
+
+```python
+def create_app(test_config: dict[str, Any] = None) -> Flask:
+    ...
+    redis_client.init(app)
+    scheduler.init(app)
+    ...
+```
+
+scheduler 的使用需要通过 flask 中的 click 配合实现:
+/src/cli/scheduler.py
+
+```python
+from flask.cli import with_appcontext
+from extensions import scheduler
+from flask.cli import AppGroup
+
+scheduler_cli = AppGroup("scheduler")
 
 
-### 国家和地区旗帜
+@scheduler_cli.command("start")
+@with_appcontext
+def start():
+    scheduler.scheduler.start()
 
-| 图标 | 代码 | 图标 | 代码 |
-| :-: | - | :-: | - |
-| :andorra: | `andorra` | :united_arab_emirates: | `united_arab_emirates` |
-| :afghanistan: | `afghanistan` | :antigua_barbuda: | `antigua_barbuda` |
-| :anguilla: | `anguilla` | :albania: | `albania` |
-| :armenia: | `armenia` | :angola: | `angola` |
-| :antarctica: | `antarctica` | :argentina: | `argentina` |
-| :american_samoa: | `american_samoa` | :austria: | `austria` |
-| :australia: | `australia` | :aruba: | `aruba` |
-| :aland_islands: | `aland_islands` | :azerbaijan: | `azerbaijan` |
-| :bosnia_herzegovina: | `bosnia_herzegovina` | :barbados: | `barbados` |
-| :bangladesh: | `bangladesh` | :belgium: | `belgium` |
-| :burkina_faso: | `burkina_faso` | :bulgaria: | `bulgaria` |
-| :bahrain: | `bahrain` | :burundi: | `burundi` |
-| :benin: | `benin` | :st_barthelemy: | `st_barthelemy` |
-| :bermuda: | `bermuda` | :brunei: | `brunei` |
-| :bolivia: | `bolivia` | :caribbean_netherlands: | `caribbean_netherlands` |
-| :brazil: | `brazil` | :bahamas: | `bahamas` |
-| :bhutan: | `bhutan` | :botswana: | `botswana` |
-| :belarus: | `belarus` | :belize: | `belize` |
-| :canada: | `canada` | :cocos_islands: | `cocos_islands` |
-| :congo_kinshasa: | `congo_kinshasa` | :central_african_republic: | `central_african_republic` |
-| :congo_brazzaville: | `congo_brazzaville` | :switzerland: | `switzerland` |
-| :cote_divoire: | `cote_divoire` | :cook_islands: | `cook_islands` |
-| :chile: | `chile` | :cameroon: | `cameroon` |
-| :cn: | `cn` | :colombia: | `colombia` |
-| :costa_rica: | `costa_rica` | :cuba: | `cuba` |
-| :cape_verde: | `cape_verde` | :curacao: | `curacao` |
-| :christmas_island: | `christmas_island` | :cyprus: | `cyprus` |
-| :czech_republic: | `czech_republic` | :de: | `de` |
-| :djibouti: | `djibouti` | :denmark: | `denmark` |
-| :dominica: | `dominica` | :dominican_republic: | `dominican_republic` |
-| :algeria: | `algeria` | :ecuador: | `ecuador` |
-| :estonia: | `estonia` | :egypt: | `egypt` |
-| :western_sahara: | `western_sahara` | :eritrea: | `eritrea` |
-| :es: | `es` | :ethiopia: | `ethiopia` |
-| :eu: | `eu` <br /> `european_union` | :finland: | `finland` |
-| :fiji: | `fiji` | :falkland_islands: | `falkland_islands` |
-| :micronesia: | `micronesia` | :faroe_islands: | `faroe_islands` |
-| :fr: | `fr` | :gabon: | `gabon` |
-| :gb: | `gb` <br /> `uk` | :grenada: | `grenada` |
-| :georgia: | `georgia` | :french_guiana: | `french_guiana` |
-| :guernsey: | `guernsey` | :ghana: | `ghana` |
-| :gibraltar: | `gibraltar` | :greenland: | `greenland` |
-| :gambia: | `gambia` | :guinea: | `guinea` |
-| :guadeloupe: | `guadeloupe` | :equatorial_guinea: | `equatorial_guinea` |
-| :greece: | `greece` | :south_georgia_south_sandwich_islands: | `south_georgia_south_sandwich_islands` |
-| :guatemala: | `guatemala` | :guam: | `guam` |
-| :guinea_bissau: | `guinea_bissau` | :guyana: | `guyana` |
-| :hong_kong: | `hong_kong` | :honduras: | `honduras` |
-| :croatia: | `croatia` | :haiti: | `haiti` |
-| :hungary: | `hungary` | :canary_islands: | `canary_islands` |
-| :indonesia: | `indonesia` | :ireland: | `ireland` |
-| :israel: | `israel` | :isle_of_man: | `isle_of_man` |
-| :india: | `india` | :british_indian_ocean_territory: | `british_indian_ocean_territory` |
-| :iraq: | `iraq` | :iran: | `iran` |
-| :iceland: | `iceland` | :it: | `it` |
-| :jersey: | `jersey` | :jamaica: | `jamaica` |
-| :jordan: | `jordan` | :jp: | `jp` |
-| :kenya: | `kenya` | :kyrgyzstan: | `kyrgyzstan` |
-| :cambodia: | `cambodia` | :kiribati: | `kiribati` |
-| :comoros: | `comoros` | :st_kitts_nevis: | `st_kitts_nevis` |
-| :north_korea: | `north_korea` | :kr: | `kr` |
-| :kuwait: | `kuwait` | :cayman_islands: | `cayman_islands` |
-| :kazakhstan: | `kazakhstan` | :laos: | `laos` |
-| :lebanon: | `lebanon` | :st_lucia: | `st_lucia` |
-| :liechtenstein: | `liechtenstein` | :sri_lanka: | `sri_lanka` |
-| :liberia: | `liberia` | :lesotho: | `lesotho` |
-| :lithuania: | `lithuania` | :luxembourg: | `luxembourg` |
-| :latvia: | `latvia` | :libya: | `libya` |
-| :morocco: | `morocco` | :monaco: | `monaco` |
-| :moldova: | `moldova` | :montenegro: | `montenegro` |
-| :madagascar: | `madagascar` | :marshall_islands: | `marshall_islands` |
-| :macedonia: | `macedonia` | :mali: | `mali` |
-| :myanmar: | `myanmar` | :mongolia: | `mongolia` |
-| :macau: | `macau` | :northern_mariana_islands: | `northern_mariana_islands` |
-| :martinique: | `martinique` | :mauritania: | `mauritania` |
-| :montserrat: | `montserrat` | :malta: | `malta` |
-| :mauritius: | `mauritius` | :maldives: | `maldives` |
-| :malawi: | `malawi` | :mexico: | `mexico` |
-| :malaysia: | `malaysia` | :mozambique: | `mozambique` |
-| :namibia: | `namibia` | :new_caledonia: | `new_caledonia` |
-| :niger: | `niger` | :norfolk_island: | `norfolk_island` |
-| :nigeria: | `nigeria` | :nicaragua: | `nicaragua` |
-| :netherlands: | `netherlands` | :norway: | `norway` |
-| :nepal: | `nepal` | :nauru: | `nauru` |
-| :niue: | `niue` | :new_zealand: | `new_zealand` |
-| :oman: | `oman` | :panama: | `panama` |
-| :peru: | `peru` | :french_polynesia: | `french_polynesia` |
-| :papua_new_guinea: | `papua_new_guinea` | :philippines: | `philippines` |
-| :pakistan: | `pakistan` | :poland: | `poland` |
-| :st_pierre_miquelon: | `st_pierre_miquelon` | :pitcairn_islands: | `pitcairn_islands` |
-| :puerto_rico: | `puerto_rico` | :palestinian_territories: | `palestinian_territories` |
-| :portugal: | `portugal` | :palau: | `palau` |
-| :paraguay: | `paraguay` | :qatar: | `qatar` |
-| :reunion: | `reunion` | :romania: | `romania` |
-| :serbia: | `serbia` | :ru: | `ru` |
-| :rwanda: | `rwanda` | :saudi_arabia: | `saudi_arabia` |
-| :solomon_islands: | `solomon_islands` | :seychelles: | `seychelles` |
-| :sudan: | `sudan` | :sweden: | `sweden` |
-| :singapore: | `singapore` | :st_helena: | `st_helena` |
-| :slovenia: | `slovenia` | :slovakia: | `slovakia` |
-| :sierra_leone: | `sierra_leone` | :san_marino: | `san_marino` |
-| :senegal: | `senegal` | :somalia: | `somalia` |
-| :suriname: | `suriname` | :south_sudan: | `south_sudan` |
-| :sao_tome_principe: | `sao_tome_principe` | :el_salvador: | `el_salvador` |
-| :sint_maarten: | `sint_maarten` | :syria: | `syria` |
-| :swaziland: | `swaziland` | :turks_caicos_islands: | `turks_caicos_islands` |
-| :chad: | `chad` | :french_southern_territories: | `french_southern_territories` |
-| :togo: | `togo` | :thailand: | `thailand` |
-| :tajikistan: | `tajikistan` | :tokelau: | `tokelau` |
-| :timor_leste: | `timor_leste` | :turkmenistan: | `turkmenistan` |
-| :tunisia: | `tunisia` | :tonga: | `tonga` |
-| :tr: | `tr` | :trinidad_tobago: | `trinidad_tobago` |
-| :tuvalu: | `tuvalu` | :taiwan: | `taiwan` |
-| :tanzania: | `tanzania` | :ukraine: | `ukraine` |
-| :uganda: | `uganda` | :us: | `us` |
-| :uruguay: | `uruguay` | :uzbekistan: | `uzbekistan` |
-| :vatican_city: | `vatican_city` | :st_vincent_grenadines: | `st_vincent_grenadines` |
-| :venezuela: | `venezuela` | :british_virgin_islands: | `british_virgin_islands` |
-| :us_virgin_islands: | `us_virgin_islands` | :vietnam: | `vietnam` |
-| :vanuatu: | `vanuatu` | :wallis_futuna: | `wallis_futuna` |
-| :samoa: | `samoa` | :kosovo: | `kosovo` |
-| :yemen: | `yemen` | :mayotte: | `mayotte` |
-| :south_africa: | `south_africa` | :zambia: | `zambia` |
-| :zimbabwe: | `zimbabwe` | | |
+
+@scheduler_cli.command("stop")
+@with_appcontext
+def stop():
+    scheduler.scheduler.stop()
+```
+
+文章写到这里, 发现这个项目还有一个替换`flask-migrate`的实现. 但是现在已经是早上 8 点半了. 我要去上班了. 等有时间在下篇文章中介绍.

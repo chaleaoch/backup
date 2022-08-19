@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Chaleaoch&#39;s Blog</title>
-    <link>https://chaleaoch.com/post/</link>
-    <description>Recent content in Posts on Chaleaoch&#39;s Blog</description>
+    <title>flask on Chaleaoch&#39;s Blog</title>
+    <link>https://chaleaoch.com/tags/flask/</link>
+    <description>Recent content in flask on Chaleaoch&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 19 Aug 2022 08:41:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/post/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Aug 2022 08:41:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/tags/flask/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一个不带插件的flask应用</title>
       <link>https://chaleaoch.com/post/emoji-support/</link>
@@ -14,15 +14,6 @@
       
       <guid>https://chaleaoch.com/post/emoji-support/</guid>
       <description>起因 事情的起因是这样的, 曾经维护过一个别人做的 flask 项目,引用了大量的插件, 在维护过程中需要调查插件的源码来解决问题, 发现有的插件功能很单一,但</description>
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://chaleaoch.com/post/hello-world/</link>
-      <pubDate>Wed, 17 Aug 2022 13:58:22 +0900</pubDate>
-      
-      <guid>https://chaleaoch.com/post/hello-world/</guid>
-      <description>sdl;fkhasdfhaskldjfhaskldjfhaskldjhfaslkdfjhskldjhdfklajsh</description>
     </item>
     
   </channel>

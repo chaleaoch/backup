@@ -2,6 +2,29 @@
 <search>
   
   <entry>
+    <title>一个不带插件的flask应用</title>
+    <url>https://chaleaoch.com/post/emoji-support/</url>
+    <categories><category>default</category>
+    </categories>
+    <tags>
+      <tag>flask</tag>
+      <tag>python</tag>
+    </tags>
+    <content type="html"><![CDATA[起因 事情的起因是这样的, 曾经维护过一个别人做的 flask 项目,引用了大量的插件, 在维护过程中需要调查插件的源码来解决问题, 发现有的插件功能很单一,但是却写的很复杂(因为开源插件要考虑各种实际使用场景). 有时间精力还不如自己写一个. 恰好得到一个从零开始的项目. 决定尝试做一个零插件的 flask 项目. 目前来看效果还不错.
+需要说明的是: 这里的零插件是指零 flask 插件,不是不用任何 python 插件.
+项目构成 一个很简单的 dashboard, 主要用到如下组件
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 python = &#34;~3.10&#34; Flask = &#34;~2.1.1&#34; python-dotenv = &#34;~0.20.0&#34; pydantic = &#34;~1.9.0&#34; requests = &#34;~2.27.1&#34; peewee = &#34;~3.14.10&#34; arrow = &#34;~1.2.2&#34; psycopg2 = &#34;~2.9.3&#34; wtf-peewee = &#34;~3.0.4&#34; APScheduler = &#34;~3.9.1&#34; redis = &#34;~4.3.3&#34; SQLAlchemy = &#34;~1.4.37&#34; gunicorn = &#34;~20.1.0&#34; Cython = &#34;^0.29.30&#34; 可能用到的 flask 插件是: flask-redis, flask-sqlalchemy, flask-peewee,flask-pydantic
+flask-redis 先说 flask-redis src/extentions.py
+1 2 3 4 5 6 7 8 from redis import Redis class FlaskRedis: def __init__(self) -&gt; None: self.client = None def init(self, app): self.client = Redis.from_url(app.config[&#34;REDIS_URL&#34;]) redis_client = FlaskRedis() 只需要在需要的地方
+1 2 3 4 from extensions import redis_client def get_redis_data(key) -&gt; list[Any] | dict[Any, Any] | None: ret = redis_client.client.get(f&#34;{key}&#34;) 是不是超级简单,完全满足项目需要. 也不需要记忆开源插件的配置.
+flask apscheduler 再譬如 scheduler src/extentioons.py
+1 2 3 4 5 6 7 8 9 10 11 12 from apscheduler.schedulers.blocking import BlockingScheduler class FlaskScheduler: def init(self, app): scheduler = BlockingScheduler() scheduler.configure(**app.config[&#34;SCHEDULER_OPTIONS&#34;]) jobs = app.config.get(&#34;SCHEDULER_JOBS&#34;, []) for job in jobs: scheduler.add_job(**job) self.scheduler = scheduler scheduler = FlaskScheduler() 当然,这里需要在 create_app 中 init 一下
+1 2 3 4 5 def create_app(test_config: dict[str, Any] = None) -&gt; Flask: ... redis_client.init(app) scheduler.init(app) ... scheduler 的使用需要通过 flask 中的 click 配合实现: /src/cli/scheduler.py
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 from flask.cli import with_appcontext from extensions import scheduler from flask.cli import AppGroup scheduler_cli = AppGroup(&#34;scheduler&#34;) @scheduler_cli.command(&#34;start&#34;) @with_appcontext def start(): scheduler.scheduler.start() @scheduler_cli.command(&#34;stop&#34;) @with_appcontext def stop(): scheduler.scheduler.stop() 文章写到这里, 发现这个项目还有一个替换flask-migrate的实现. 但是现在已经是早上 8 点半了. 我要去上班了. 等有时间在下篇文章中介绍.
+]]></content>
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
     <url>https://chaleaoch.com/post/hello-world/</url>
     <categories>
@@ -34,26 +57,6 @@
 我们的愿景 延续 NexT 经典的黑白调搭配，保持简单的易用性及强大的功能。
 使用反馈 加入 GitHub Discussions 或 Gitter 在线讨论 🍻 GitHub Issues 提交错误报告 🐛 GitHub Feature 表新功能的想法 ✨ 同时国内用户也可加入 QQ 群交流： 604710815
 ]]></content>
-  </entry>
-  
-  <entry>
-    <title>支持 Emoji 表情</title>
-    <url>https://chaleaoch.com/post/emoji-support.html</url>
-    <categories><category>示例</category>
-    </categories>
-    <tags>
-      <tag>表情</tag>
-      <tag>emoji</tag>
-    </tags>
-    <content type="html"><![CDATA[Emoji 可以通过多种方式在 Hugo 项目中启用。
-emojify 方法可以直接在模板中调用, 或者使用 行内 Shortcodes .
-dfasdfsadl;fkjaslk;dfjsal;kfdjs;lakjdfl;askdjfl;skdjfl;skjdfl;skjdfl;skajdfl;skjdfl;skjdf;lsakjdflk;j 然后你就可以直接在文章中输入 emoji 的代码。
-它们以冒号开头和结尾，并且包含 emoji 的 代码：
-1 2 3 去露营啦! {:}tent: 很快就回来. 真开心! {:}joy: 呈现的输出效果如下:
-去露营啦! ⛺ 很快就回来。
-真开心! 😂
-以下符号清单是 emoji 代码的非常有用的参考。
-表情与情感 笑脸表情 图标 代码 图标 代码 😀 grinning 😃 smiley 😄 smile 😁 grin 😆 laughing satisfied 😅 sweat_smile 🤣 rofl 😂 joy 🙂 slightly_smiling_face 🙃 upside_down_face 😉 wink 😊 blush 😇 innocent 爱意表情 图标 代码 图标 代码 😍 heart_eyes 😘 kissing_heart 😗 kissing ☺️ relaxed 😚 kissing_closed_eyes 😙 kissing_smiling_eyes 吐舌头表情 图标 代码 图标 代码 😋 yum 😛 stuck_out_tongue 😜 stuck_out_tongue_winking_eye 😝 stuck_out_tongue_closed_eyes 🤑 money_mouth_face 国家和地区旗帜 图标 代码 图标 代码 🇦🇩 andorra 🇦🇪 united_arab_emirates 🇦🇫 afghanistan 🇦🇬 antigua_barbuda 🇦🇮 anguilla 🇦🇱 albania 🇦🇲 armenia 🇦🇴 angola 🇦🇶 antarctica 🇦🇷 argentina 🇦🇸 american_samoa 🇦🇹 austria 🇦🇺 australia 🇦🇼 aruba 🇦🇽 aland_islands 🇦🇿 azerbaijan 🇧🇦 bosnia_herzegovina 🇧🇧 barbados 🇧🇩 bangladesh 🇧🇪 belgium 🇧🇫 burkina_faso 🇧🇬 bulgaria 🇧🇭 bahrain 🇧🇮 burundi 🇧🇯 benin 🇧🇱 st_barthelemy 🇧🇲 bermuda 🇧🇳 brunei 🇧🇴 bolivia 🇧🇶 caribbean_netherlands 🇧🇷 brazil 🇧🇸 bahamas 🇧🇹 bhutan 🇧🇼 botswana 🇧🇾 belarus 🇧🇿 belize 🇨🇦 canada 🇨🇨 cocos_islands 🇨🇩 congo_kinshasa 🇨🇫 central_african_republic 🇨🇬 congo_brazzaville 🇨🇭 switzerland 🇨🇮 cote_divoire 🇨🇰 cook_islands 🇨🇱 chile 🇨🇲 cameroon 🇨🇳 cn 🇨🇴 colombia 🇨🇷 costa_rica 🇨🇺 cuba 🇨🇻 cape_verde 🇨🇼 curacao 🇨🇽 christmas_island 🇨🇾 cyprus 🇨🇿 czech_republic 🇩🇪 de 🇩🇯 djibouti 🇩🇰 denmark 🇩🇲 dominica 🇩🇴 dominican_republic 🇩🇿 algeria 🇪🇨 ecuador 🇪🇪 estonia 🇪🇬 egypt 🇪🇭 western_sahara 🇪🇷 eritrea 🇪🇸 es 🇪🇹 ethiopia 🇪🇺 eu european_union 🇫🇮 finland 🇫🇯 fiji 🇫🇰 falkland_islands 🇫🇲 micronesia 🇫🇴 faroe_islands 🇫🇷 fr 🇬🇦 gabon 🇬🇧 gb uk 🇬🇩 grenada 🇬🇪 georgia 🇬🇫 french_guiana 🇬🇬 guernsey 🇬🇭 ghana 🇬🇮 gibraltar 🇬🇱 greenland 🇬🇲 gambia 🇬🇳 guinea 🇬🇵 guadeloupe 🇬🇶 equatorial_guinea 🇬🇷 greece 🇬🇸 south_georgia_south_sandwich_islands 🇬🇹 guatemala 🇬🇺 guam 🇬🇼 guinea_bissau 🇬🇾 guyana 🇭🇰 hong_kong 🇭🇳 honduras 🇭🇷 croatia 🇭🇹 haiti 🇭🇺 hungary 🇮🇨 canary_islands 🇮🇩 indonesia 🇮🇪 ireland 🇮🇱 israel 🇮🇲 isle_of_man 🇮🇳 india 🇮🇴 british_indian_ocean_territory 🇮🇶 iraq 🇮🇷 iran 🇮🇸 iceland 🇮🇹 it 🇯🇪 jersey 🇯🇲 jamaica 🇯🇴 jordan 🇯🇵 jp 🇰🇪 kenya 🇰🇬 kyrgyzstan 🇰🇭 cambodia 🇰🇮 kiribati 🇰🇲 comoros 🇰🇳 st_kitts_nevis 🇰🇵 north_korea 🇰🇷 kr 🇰🇼 kuwait 🇰🇾 cayman_islands 🇰🇿 kazakhstan 🇱🇦 laos 🇱🇧 lebanon 🇱🇨 st_lucia 🇱🇮 liechtenstein 🇱🇰 sri_lanka 🇱🇷 liberia 🇱🇸 lesotho 🇱🇹 lithuania 🇱🇺 luxembourg 🇱🇻 latvia 🇱🇾 libya 🇲🇦 morocco 🇲🇨 monaco 🇲🇩 moldova 🇲🇪 montenegro 🇲🇬 madagascar 🇲🇭 marshall_islands 🇲🇰 macedonia 🇲🇱 mali 🇲🇲 myanmar 🇲🇳 mongolia 🇲🇴 macau 🇲🇵 northern_mariana_islands 🇲🇶 martinique 🇲🇷 mauritania 🇲🇸 montserrat 🇲🇹 malta 🇲🇺 mauritius 🇲🇻 maldives 🇲🇼 malawi 🇲🇽 mexico 🇲🇾 malaysia 🇲🇿 mozambique 🇳🇦 namibia 🇳🇨 new_caledonia 🇳🇪 niger 🇳🇫 norfolk_island 🇳🇬 nigeria 🇳🇮 nicaragua 🇳🇱 netherlands 🇳🇴 norway 🇳🇵 nepal 🇳🇷 nauru 🇳🇺 niue 🇳🇿 new_zealand 🇴🇲 oman 🇵🇦 panama 🇵🇪 peru 🇵🇫 french_polynesia 🇵🇬 papua_new_guinea 🇵🇭 philippines 🇵🇰 pakistan 🇵🇱 poland 🇵🇲 st_pierre_miquelon 🇵🇳 pitcairn_islands 🇵🇷 puerto_rico 🇵🇸 palestinian_territories 🇵🇹 portugal 🇵🇼 palau 🇵🇾 paraguay 🇶🇦 qatar 🇷🇪 reunion 🇷🇴 romania 🇷🇸 serbia 🇷🇺 ru 🇷🇼 rwanda 🇸🇦 saudi_arabia 🇸🇧 solomon_islands 🇸🇨 seychelles 🇸🇩 sudan 🇸🇪 sweden 🇸🇬 singapore 🇸🇭 st_helena 🇸🇮 slovenia 🇸🇰 slovakia 🇸🇱 sierra_leone 🇸🇲 san_marino 🇸🇳 senegal 🇸🇴 somalia 🇸🇷 suriname 🇸🇸 south_sudan 🇸🇹 sao_tome_principe 🇸🇻 el_salvador 🇸🇽 sint_maarten 🇸🇾 syria 🇸🇿 swaziland 🇹🇨 turks_caicos_islands 🇹🇩 chad 🇹🇫 french_southern_territories 🇹🇬 togo 🇹🇭 thailand 🇹🇯 tajikistan 🇹🇰 tokelau 🇹🇱 timor_leste 🇹🇲 turkmenistan 🇹🇳 tunisia 🇹🇴 tonga 🇹🇷 tr 🇹🇹 trinidad_tobago 🇹🇻 tuvalu 🇹🇼 taiwan 🇹🇿 tanzania 🇺🇦 ukraine 🇺🇬 uganda 🇺🇸 us 🇺🇾 uruguay 🇺🇿 uzbekistan 🇻🇦 vatican_city 🇻🇨 st_vincent_grenadines 🇻🇪 venezuela 🇻🇬 british_virgin_islands 🇻🇮 us_virgin_islands 🇻🇳 vietnam 🇻🇺 vanuatu 🇼🇫 wallis_futuna 🇼🇸 samoa 🇽🇰 kosovo 🇾🇪 yemen 🇾🇹 mayotte 🇿🇦 south_africa 🇿🇲 zambia 🇿🇼 zimbabwe ]]></content>
   </entry>
   
   <entry>
