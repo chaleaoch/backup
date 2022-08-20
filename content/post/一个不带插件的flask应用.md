@@ -24,7 +24,7 @@ tags:
 #comment:
 # enable: false
 # Enable table of content
-#toc: false
+toc: true
 # Absolute link for visit
 #url: "{{ lower .Name }}.html"
 # Sticky post set-top in home page and the smaller nubmer will more forward.
@@ -58,7 +58,7 @@ gunicorn = "~20.1.0"
 Cython = "^0.29.30"
 ```
 
-可能用到的 flask 插件是: `flask-redis`, `flask-sqlalchemy`, `flask-peewee`,`flask-pydantic`
+可能用到的 flask 插件是: `flask-redis`, `flask-sqlalchemy`, `flask-peewee`, `flask-pydantic`
 
 ## flask-redis
 
@@ -87,10 +87,10 @@ def get_redis_data(key) -> list[Any] | dict[Any, Any] | None:
 
 是不是超级简单,完全满足项目需要. 也不需要记忆开源插件的配置.
 
-# flask apscheduler
+## flask apscheduler
 
-再譬如 scheduler
-src/extentioons.py
+再譬如 scheduler <br />
+`src/extentioons.py`
 
 ```python
 from apscheduler.schedulers.blocking import BlockingScheduler
@@ -117,8 +117,8 @@ def create_app(test_config: dict[str, Any] = None) -> Flask:
     ...
 ```
 
-scheduler 的使用需要通过 flask 中的 click 配合实现:
-/src/cli/scheduler.py
+scheduler 的使用需要通过 flask 中的 click 配合实现:<br />
+`/src/cli/scheduler.py`
 
 ```python
 from flask.cli import with_appcontext

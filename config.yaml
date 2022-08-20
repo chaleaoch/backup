@@ -156,16 +156,16 @@ params:
   # 站点基本信息
   # Site Information Settings
   author: chaleaoch
-  subtitle: chaleaoch
+  subtitle: 老码农的个人博客
   description: chaleaoch的博客
   keywords: chaleaoch,博客
 
   # 不同尺寸站点图标
   # Different size of favicon
   favicon:
-    icon: /imgs/icons/16.ico
-    small: /imgs/icons/16.ico
-    medium: /imgs/icons/32.png
+    icon: /imgs/16.ico
+    small: /imgs/16.ico
+    medium: /imgs/32.png
     appleTouchIcon: /imgs/icons/128.png
 
   # 自定义 Logo （目前只支持 Mist 页面模式）
@@ -330,11 +330,11 @@ params:
     # 开启自动换行显示
     # If true, all words will placed on next lines
     # if header width longer then sidebar width.
-    wrap: false
+    wrap: true
     # 自动展开子列表
     # If true, all level of TOC in a post will be displayed,
     # rather than the activated part of it.
-    expandAll: false
+    expandAll: true
     # 最大的列表深度，建议不要超过3层
     # Maximum heading depth of generated toc.
     maxDepth: 3
@@ -475,14 +475,14 @@ params:
     #channel0: Twitter || https://twitter.com/username || fab fa-twitter
     #channel1: Telegram || https://t.me/channel_name || fab fa-telegram
     # channel2: WeChat || /images/wechat_channel.jpg || fab fa-weixin
-    channel3: RSS || /atom.xml || fa fa-rss
+    # channel3: RSS || /atom.xml || fa fa-rss
 
   # 文章的在线编辑
   # Post edit
   # Easily browse and edit blog source code online.
   postEdit:
     enable: true
-    url: https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/
+    url: https://github.com/chaleaoch/chaleaoch.github.io/tree/main/content/post
 
   # 设置文本的对齐方式
   # Set the text alignment in posts / pages.
@@ -743,7 +743,7 @@ params:
   comments:
     # 开启评论组件
     # If true, will show comment component in post end.
-    enable: true
+    enable: false
     # 设置默认使用的评论插件
     # 可选值：livere | waline | utterances | artalk | giscus
     # Choose a comment system to be displayed by default.
