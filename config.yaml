@@ -482,7 +482,7 @@ params:
   # Easily browse and edit blog source code online.
   postEdit:
     enable: true
-    url: https://github.com/chaleaoch/chaleaoch.github.io/tree/main/content/post
+    url: https://github.com/chaleaoch/chaleaoch.github.io/tree/main/content/
 
   # 设置文本的对齐方式
   # Set the text alignment in posts / pages.
