@@ -2,6 +2,20 @@
 <search>
   
   <entry>
+    <title>go切片做为函数参数需要知道的一些知识</title>
+    <url>https://chaleaoch.com/post/go%E5%88%87%E7%89%87%E5%81%9A%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86/</url>
+    <categories><category>笔记</category>
+    </categories>
+    <tags>
+      <tag>golang</tag>
+    </tags>
+    <content type="html"><![CDATA[在 go 语言中,所有类型都是值传递, 这个知识在几乎所有 go 语法书中都有介绍. 但是切片和 map 这俩数据结构在做为函数参数的时候,可以通过形参改变实参. 这和值传递理念是相背离的.
+这里做个小笔记增强记忆.
+slice 是一个结构体, 其中有一个字段是指向底层数组的指针 但是 slice 依然是值拷贝. 参考下面代码比较差异
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 package main import &#34;fmt&#34; func myAppend(s []int) []int { s = append(s, 100) return s } func myAppend2(s []int) { s[0] = 666 } func myAppendPtr(s *[]int) { *s = append(*s, 100) } func main() { s := []int{1, 1, 1} myAppend(s) fmt.Println(s) myAppend2(s) fmt.Println(s) myAppendPtr(&amp;s) fmt.Println(s) } // [1 1 1] // [666 1 1] // [666 1 1 100] ]]></content>
+  </entry>
+  
+  <entry>
     <title>一个不带插件的flask应用2 -- 自定义migrate</title>
     <url>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8-copy/</url>
     <categories><category>default</category>
