@@ -168,6 +168,7 @@
     <li><a href="#起因">起因</a></li>
     <li><a href="#peewee-的-migrate-api">peewee 的 migrate api</a></li>
     <li><a href="#思路及实现">思路及实现</a></li>
+    <li><a href="#使用">使用</a></li>
   </ul>
 </nav></div>
       </div>
@@ -298,7 +299,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>714</span>
+  <span class="post-meta-item-text">字数：</span><span>715</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -341,7 +342,8 @@
 <a href="https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8/" title="前文" rel="noopener external nofollow noreferrer" target="_blank" class=" exturl">
     前文
     <i class="fa fa-external-link-alt"></i>
-</a>&gt;)有介绍, 本项目尝试零插件实现一个 flask 应用.
+</a>有介绍, 本项目尝试零插件实现一个 flask 应用.
+<br />
 基于以上 4 点原因, 决定自己写一个半自动的<code>migrate</code>插件. 让冲突出现在<code>git push</code>阶段. 人为在代码层面解决冲突.而不是在<code>make migrate</code>的时候手忙脚乱.</li>
 </ol>
 <h1 id="peewee-的-migrate-api">peewee 的 migrate api</h1>
@@ -487,7 +489,9 @@
 </span></span><span style="display:flex;"><span>        migrate(self<span style="color:#f92672">.</span>migrator<span style="color:#f92672">.</span>add_column(<span style="color:#e6db74">&#34;amodel&#34;</span>, <span style="color:#e6db74">&#34;field_name&#34;</span>, CharField(max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">255</span>, null<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)))
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>完.</p>
+</div><h1 id="使用">使用</h1>
+<p><code>flask migrate 20200101 20220101</code></p>
+<p>完.</p>
 
 
     </div>

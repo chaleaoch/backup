@@ -38,7 +38,8 @@ toc: true
 1. django 默认提供了 migration 功能.
 2. django 的 migration 功能在多人开发的模式下会有冲突,经常需要--merge. 并且也不能保证完全避免问题.
 3. peewee 提供了 migration 的基础 api
-4. 标题和[前文](https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8/ "一个不带插件的flask应用")>)有介绍, 本项目尝试零插件实现一个 flask 应用.
+4. 标题和[前文](https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8/ "一个不带插件的flask应用")有介绍, 本项目尝试零插件实现一个 flask 应用.
+   <br />
    基于以上 4 点原因, 决定自己写一个半自动的`migrate`插件. 让冲突出现在`git push`阶段. 人为在代码层面解决冲突.而不是在`make migrate`的时候手忙脚乱.
 
 # peewee 的 migrate api
@@ -118,5 +119,9 @@ class Migrate:
     def migrate_20220816(self):
         migrate(self.migrator.add_column("amodel", "field_name", CharField(max_length=255, null=True)))
 ```
+
+# 使用
+
+`flask migrate 20200101 20220101`
 
 完.
