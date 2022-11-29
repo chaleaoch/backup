@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Chaleaoch&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 21 Aug 2022 22:09:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/post/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Nov 2022 19:44:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/post/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python对属性的搜索优先级</title>
+      <link>https://chaleaoch.com/post/python%E5%AF%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E6%90%9C%E7%B4%A2%E4%BC%98%E5%85%88%E7%BA%A7/</link>
+      <pubDate>Tue, 29 Nov 2022 19:44:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/python%E5%AF%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E6%90%9C%E7%B4%A2%E4%BC%98%E5%85%88%E7%BA%A7/</guid>
+      <description>当获取元素的时候，实际上调用的是object.__getattribute__(key) 所谓的搜索优先级实际上是object.__getat</description>
+    </item>
+    
     <item>
       <title>go切片做为函数参数需要知道的一些知识</title>
       <link>https://chaleaoch.com/post/go%E5%88%87%E7%89%87%E5%81%9A%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86/</link>
