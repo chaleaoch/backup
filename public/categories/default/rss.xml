@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>default on Chaleaoch&#39;s Blog</title>
+    <link>https://chaleaoch.com/categories/default/</link>
+    <description>Recent content in default on Chaleaoch&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 29 Nov 2022 19:44:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/categories/default/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python对属性的搜索优先级</title>
+      <link>https://chaleaoch.com/post/python%E5%AF%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E6%90%9C%E7%B4%A2%E4%BC%98%E5%85%88%E7%BA%A7/</link>
+      <pubDate>Tue, 29 Nov 2022 19:44:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/python%E5%AF%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E6%90%9C%E7%B4%A2%E4%BC%98%E5%85%88%E7%BA%A7/</guid>
+      <description>当获取元素的时候，实际上调用的是object.__getattribute__(key) 所谓的搜索优先级实际上是object.__getat</description>
+    </item>
+    
+    <item>
+      <title>一个不带插件的flask应用2 -- 自定义migrate</title>
+      <link>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8-copy/</link>
+      <pubDate>Sun, 21 Aug 2022 01:12:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8-copy/</guid>
+      <description>起因 前文 介绍了自己写的flask-redis 和 flask-scheduler扩展. 今天介绍基于flask 和 peewee 如何实现半自动 migrate. django 默认提供了 migration 功</description>
+    </item>
+    
+    <item>
+      <title>一个不带插件的flask应用</title>
+      <link>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Fri, 19 Aug 2022 08:41:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8/</guid>
+      <description>起因 事情的起因是这样的, 曾经维护过一个别人做的 flask 项目,引用了大量的插件, 在维护过程中需要调查插件的源码来解决问题, 发现有的插件功能很单一,但</description>
+    </item>
+    
+  </channel>
+</rss>

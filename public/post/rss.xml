@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Chaleaoch&#39;s Blog</title>
+    <link>https://chaleaoch.com/post/</link>
+    <description>Recent content in Posts on Chaleaoch&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 29 Nov 2022 19:44:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/post/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python对属性的搜索优先级</title>
+      <link>https://chaleaoch.com/post/python%E5%AF%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E6%90%9C%E7%B4%A2%E4%BC%98%E5%85%88%E7%BA%A7/</link>
+      <pubDate>Tue, 29 Nov 2022 19:44:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/python%E5%AF%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E6%90%9C%E7%B4%A2%E4%BC%98%E5%85%88%E7%BA%A7/</guid>
+      <description>当获取元素的时候，实际上调用的是object.__getattribute__(key) 所谓的搜索优先级实际上是object.__getat</description>
+    </item>
+    
+    <item>
+      <title>go切片做为函数参数需要知道的一些知识</title>
+      <link>https://chaleaoch.com/post/go%E5%88%87%E7%89%87%E5%81%9A%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86/</link>
+      <pubDate>Sun, 21 Aug 2022 22:09:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/go%E5%88%87%E7%89%87%E5%81%9A%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86/</guid>
+      <description>在 go 语言中,所有类型都是值传递, 这个知识在几乎所有 go 语法书中都有介绍. 但是切片和 map 这俩数据结构在做为函数参数的时候,可以通过形参改变实参. 这</description>
+    </item>
+    
+    <item>
+      <title>一个不带插件的flask应用2 -- 自定义migrate</title>
+      <link>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8-copy/</link>
+      <pubDate>Sun, 21 Aug 2022 01:12:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8-copy/</guid>
+      <description>起因 前文 介绍了自己写的flask-redis 和 flask-scheduler扩展. 今天介绍基于flask 和 peewee 如何实现半自动 migrate. django 默认提供了 migration 功</description>
+    </item>
+    
+    <item>
+      <title>一个不带插件的flask应用</title>
+      <link>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Fri, 19 Aug 2022 08:41:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8/</guid>
+      <description>起因 事情的起因是这样的, 曾经维护过一个别人做的 flask 项目,引用了大量的插件, 在维护过程中需要调查插件的源码来解决问题, 发现有的插件功能很单一,但</description>
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://chaleaoch.com/post/hello-world/</link>
+      <pubDate>Wed, 17 Aug 2022 13:58:22 +0900</pubDate>
+      
+      <guid>https://chaleaoch.com/post/hello-world/</guid>
+      <description>hello world!</description>
+    </item>
+    
+  </channel>
+</rss>

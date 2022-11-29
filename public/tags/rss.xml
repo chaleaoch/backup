@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Chaleaoch&#39;s Blog</title>
+    <link>https://chaleaoch.com/tags/</link>
+    <description>Recent content in Tags on Chaleaoch&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 29 Nov 2022 19:44:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python</title>
+      <link>https://chaleaoch.com/tags/python/</link>
+      <pubDate>Tue, 29 Nov 2022 19:44:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://chaleaoch.com/tags/golang/</link>
+      <pubDate>Sun, 21 Aug 2022 22:09:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flask</title>
+      <link>https://chaleaoch.com/tags/flask/</link>
+      <pubDate>Sun, 21 Aug 2022 01:12:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/tags/flask/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

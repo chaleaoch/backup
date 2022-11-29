@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<search>
+  
+  <entry>
+    <title>python对属性的搜索优先级</title>
+    <url>https://chaleaoch.com/post/python%E5%AF%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E6%90%9C%E7%B4%A2%E4%BC%98%E5%85%88%E7%BA%A7/</url>
+    <categories><category>default</category>
+    </categories>
+    <tags>
+      <tag>python</tag>
+    </tags>
+    <content type="html"><![CDATA[当获取元素的时候，实际上调用的是object.__getattribute__(key) 所谓的搜索优先级实际上是object.__getattribute__(key)实现的
+Data Descriptor 和 Non-data Descriptor 的不同体现在关于实例字典条目的覆盖和计算顺序上。 如果实例字典中包含了与 Data Descriptor 同名的属性，那么 Data Descriptor 优先。 如果实例字典中包含了与 Non-data Descriptor 同名的属性，实例字典优先。
+同时定义get()和set()方法，并且set()在调用时抛出 AttributeError 异常，就可以创建一个只读的 Data Descriptor。 只需要定义一个抛出异常的set()方法就足以让该对象成为 Data Descriptor。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 class demo(object):# 非数据描述符 def __init__(self, *args, **kwargs): self.args = args self.kwargs = kwargs def __get__(self, instance, owner): return owner.__dict__[type(self).__name__](instance, *self.args, **self.kwargs) class Descriptor(object): def __get__(self, instance, owner): return &#39;Descriptor&#39; def __set__(self, instance, value): pass class FOO(object): def __getattr__(self, item): return &#39;__getattr__&#39; def __init__(self, *args, **kwargs): pass # attr = Descriptor() demo = demo() # def demo(self): # pass def __del__(self): pass foo = FOO(1, 2, 3) # foo.attr = &#39;instance attr&#39; # FOO.attr = &#39;class attr&#39; # type(foo).__dict__[&#39;attr&#39;].__get__(foo, type(foo)) # FOO.__dict__[&#39;attr&#39;].__get__(None, FOO) print foo.attr print FOO.attr print FOO.__dict__[&#39;demo&#39;] # &lt;function demo at 0x02F67B30&gt; print FOO.demo # &lt;unbound method FOO.demo&gt; print foo.demo # &lt;bound method FOO.demo of &lt;__main__.FOO object at 0x02F69E30&gt;&gt; print FOO.__dict__[&#39;demo&#39;].__get__(None, FOO) == FOO.demo #True print type(foo).__dict__[&#39;demo&#39;].__get__(foo, type(foo)) == foo.demo # #True 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 def __getattribute__(self, key): # self是一个类 if type(type) == type(self): pass # 和实例类似，区别1，但是没有__getattr__2，针对非数据描述符的处理方式是不同的。（unbound method） # self是一个实例 else: # 数据型描述符 _attr = type(self).__dict__.get(key) if _attr and hasattr(_attr, &#39;__get__&#39;) and hasattr(_attr, &#39;__set__&#39;): _value = type(self).__dict__[key] if hasattr(_value, &#39;__get__&#39;): return _value.__get__(self, type(self)) return _value del _attr # 实例属性 _attr = self.__dict__.get(key) if _attr: return _attr del _attr # 非数据描述符 _attr = type(self).__dict__.get(key) if _attr and hasattr(_attr, &#39;__get__&#39;): _value = type(self).__dict__[key] if hasattr(_value, &#39;__get__&#39;): return _value.__get__(self, type(self)) return _value del _attr # 类属性 _attr = type(self).__dict__.get(key) if _attr: return _attr # 父类属性 for FClass in self.__class__.__mro__: _attr = FClass.__dict__.get(key) if _attr: return _attr # __getattr__ if hasattr(self, &#39;__getattr__&#39;): return self.__getattr__(key) else: raise AttributeError(&#39;type object &#34;{1}&#34; has no attribute &#34;{2}&#34;&#39;.format(str(self.__class__), key)) ]]></content>
+  </entry>
+  
+  <entry>
+    <title>go切片做为函数参数需要知道的一些知识</title>
+    <url>https://chaleaoch.com/post/go%E5%88%87%E7%89%87%E5%81%9A%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86/</url>
+    <categories><category>笔记</category>
+    </categories>
+    <tags>
+      <tag>golang</tag>
+    </tags>
+    <content type="html"><![CDATA[在 go 语言中,所有类型都是值传递, 这个知识在几乎所有 go 语法书中都有介绍. 但是切片和 map 这俩数据结构在做为函数参数的时候,可以通过形参改变实参. 这和值传递理念是相背离的.
+这里做个小笔记增强记忆.
+slice 是一个结构体, 其中有一个字段是指向底层数组的指针 但是 slice 依然是值拷贝. 参考下面代码比较差异
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 package main import &#34;fmt&#34; func myAppend(s []int) []int { s = append(s, 100) return s } func myAppend2(s []int) { s[0] = 666 } func myAppendPtr(s *[]int) { *s = append(*s, 100) } func main() { s := []int{1, 1, 1} myAppend(s) fmt.Println(s) myAppend2(s) fmt.Println(s) myAppendPtr(&amp;s) fmt.Println(s) } // [1 1 1] // [666 1 1] // [666 1 1 100] ]]></content>
+  </entry>
+  
+  <entry>
+    <title>一个不带插件的flask应用2 -- 自定义migrate</title>
+    <url>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8-copy/</url>
+    <categories><category>default</category>
+    </categories>
+    <tags>
+      <tag>flask</tag>
+      <tag>python</tag>
+    </tags>
+    <content type="html"><![CDATA[起因 前文 介绍了自己写的flask-redis 和 flask-scheduler扩展. 今天介绍基于flask 和 peewee 如何实现半自动 migrate.
+django 默认提供了 migration 功能. django 的 migration 功能在多人开发的模式下会有冲突,经常需要&ndash;merge. 并且也不能保证完全避免问题. peewee 提供了 migration 的基础 api 标题和 前文 有介绍, 本项目尝试零插件实现一个 flask 应用. 基于以上 4 点原因, 决定自己写一个半自动的migrate插件. 让冲突出现在git push阶段. 人为在代码层面解决冲突.而不是在make migrate的时候手忙脚乱. peewee 的 migrate api 提供了常见的增删改字段和create table功能
+1 2 3 4 5 6 7 8 9 db.create_tables([table_name]) migrator.add_column(&#39;comment_tbl&#39;, &#39;pub_date&#39;, pubdate_field) migrator.rename_column(&#39;story&#39;, &#39;pub_date&#39;, &#39;publish_date&#39;) migrator.drop_column(&#39;story&#39;, &#39;some_old_field&#39;) migrator.drop_not_null(&#39;story&#39;, &#39;pub_date&#39;) migrator.add_not_null(&#39;story&#39;, &#39;modified_date&#39;) migrator.alter_column_type(&#39;person&#39;, &#39;email&#39;, TextField()) migrator.rename_table(&#39;story&#39;, &#39;stories_tbl&#39;) migrator.add_index(&#39;story&#39;, (&#39;pub_date&#39;,), False) 更多就不粘了. 参考 文档 即可.
+思路及实现 思路非常简单,利用反射和peewee的migrate api, 自己写一个迁移的class(就是下面代码中的Migrate) 手动执行 sql 命令就行了. 这里需要注意的是create_tables 引入的model 不能是代码中的最新版本的model. 必须是在刚刚创建这个model是的一个快照, 实现起来也很简单, 做一份拷贝就可以了. 否则, 如果某个model的字段发生了变化, create新表的同时又add了一个同样的字段会报错.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 from playhouse.migrate import * def parse_method_name(method_name: str) -&gt; tuple[arrow.arrow.Arrow, int]: migrate_version = 0 method_tuple = method_name.split(&#34;_&#34;) if len(method_tuple) == 2: date = method_tuple[1] elif len(method_tuple) == 3: date = method_tuple[1] migrate_version = method_tuple[2] else: raise Exception(f&#34;Invalid method name: {method_name}&#34;) return arrow.get(date), int(migrate_version) @click.command(&#34;migrate&#34;) @click.argument(&#34;start_version&#34;) @click.argument(&#34;end_version&#34;) @with_appcontext def create_migrations(start_version, end_version): start_version = arrow.get(start_version) end_version = arrow.get(end_version) execute_method_dict = dict[str, arrow.arrow.Arrow | int | Callable] execute_methods: list(execute_method_dict) = [] for method_name, method in inspect.getmembers(Migrate(), predicate=inspect.ismethod): if method_name.startswith(&#34;migrate_&#34;): date, migrate_version = parse_method_name(method_name) if start_version &lt; date and date &lt;= end_version: execute_methods.append( { &#34;date&#34;: date, &#34;migrate_version&#34;: migrate_version, &#34;method&#34;: method, } ) execute_methods.sort(key=lambda x: (x[&#34;date&#34;], x[&#34;migrate_version&#34;])) for execute_method in execute_methods: with flask_db.database.atomic(): try: execute_method[&#34;method&#34;]() except Exception as e: print(f&#34;e:{e},execute_method:{execute_method}&#34;) raise (e) class Migrate: def __init__(self) -&gt; None: self.migrator = PostgresqlMigrator(flask_db.database) self.db = flask_db.database def migrate_20220815(self): self.db.create_tables([AModel,BModel]) def migrate_20220816(self): migrate(self.migrator.add_column(&#34;amodel&#34;, &#34;field_name&#34;, CharField(max_length=255, null=True))) 使用 flask migrate 20200101 20220101
+完.
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>一个不带插件的flask应用</title>
+    <url>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8/</url>
+    <categories><category>default</category>
+    </categories>
+    <tags>
+      <tag>flask</tag>
+      <tag>python</tag>
+    </tags>
+    <content type="html"><![CDATA[起因 事情的起因是这样的, 曾经维护过一个别人做的 flask 项目,引用了大量的插件, 在维护过程中需要调查插件的源码来解决问题, 发现有的插件功能很单一,但是却写的很复杂(因为开源插件要考虑各种实际使用场景). 有时间精力还不如自己写一个. 恰好得到一个从零开始的项目. 决定尝试做一个零插件的 flask 项目. 目前来看效果还不错.
+需要说明的是: 这里的零插件是指零 flask 插件,不是不用任何 python 插件.
+项目构成 一个很简单的 dashboard, 主要用到如下组件
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 python = &#34;~3.10&#34; Flask = &#34;~2.1.1&#34; python-dotenv = &#34;~0.20.0&#34; pydantic = &#34;~1.9.0&#34; requests = &#34;~2.27.1&#34; peewee = &#34;~3.14.10&#34; arrow = &#34;~1.2.2&#34; psycopg2 = &#34;~2.9.3&#34; wtf-peewee = &#34;~3.0.4&#34; APScheduler = &#34;~3.9.1&#34; redis = &#34;~4.3.3&#34; SQLAlchemy = &#34;~1.4.37&#34; gunicorn = &#34;~20.1.0&#34; Cython = &#34;^0.29.30&#34; 可能用到的 flask 插件是: flask-redis, flask-sqlalchemy, flask-peewee, flask-pydantic
+flask-redis 先说 flask-redis src/extentions.py
+1 2 3 4 5 6 7 8 from redis import Redis class FlaskRedis: def __init__(self) -&gt; None: self.client = None def init(self, app): self.client = Redis.from_url(app.config[&#34;REDIS_URL&#34;]) redis_client = FlaskRedis() 只需要在需要的地方
+1 2 3 4 from extensions import redis_client def get_redis_data(key) -&gt; list[Any] | dict[Any, Any] | None: ret = redis_client.client.get(f&#34;{key}&#34;) 是不是超级简单,完全满足项目需要. 也不需要记忆开源插件的配置.
+flask apscheduler 再譬如 scheduler src/extentioons.py
+1 2 3 4 5 6 7 8 9 10 11 12 from apscheduler.schedulers.blocking import BlockingScheduler class FlaskScheduler: def init(self, app): scheduler = BlockingScheduler() scheduler.configure(**app.config[&#34;SCHEDULER_OPTIONS&#34;]) jobs = app.config.get(&#34;SCHEDULER_JOBS&#34;, []) for job in jobs: scheduler.add_job(**job) self.scheduler = scheduler scheduler = FlaskScheduler() 当然,这里需要在 create_app 中 init 一下
+1 2 3 4 5 def create_app(test_config: dict[str, Any] = None) -&gt; Flask: ... redis_client.init(app) scheduler.init(app) ... scheduler 的使用需要通过 flask 中的 click 配合实现:
+/src/cli/scheduler.py
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 from flask.cli import with_appcontext from extensions import scheduler from flask.cli import AppGroup scheduler_cli = AppGroup(&#34;scheduler&#34;) @scheduler_cli.command(&#34;start&#34;) @with_appcontext def start(): scheduler.scheduler.start() @scheduler_cli.command(&#34;stop&#34;) @with_appcontext def stop(): scheduler.scheduler.stop() 文章写到这里, 发现这个项目还有一个替换flask-migrate的实现. 但是现在已经是早上 8 点半了. 我要去上班了. 等有时间在下篇文章中介绍.
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <url>https://chaleaoch.com/post/hello-world/</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[hello world!
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <url>https://chaleaoch.com/posts/hello-world/</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[sdl;fkhasdfhaskldjfhaskldjfhaskldjhfaslkdfjhskldjhdfklajsh
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>关于 Hugo NexT 组织</title>
+    <url>https://chaleaoch.com/about.html</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[Hugo NexT 组织是由众多喜爱 NexT 主题及风格的世界各地友人共同组建而成，为的就是让这个主题继续在 Hugo 引擎中也能得到发扬光大，在此也欢迎你的加入！
+我们的愿景 延续 NexT 经典的黑白调搭配，保持简单的易用性及强大的功能。
+使用反馈 加入 GitHub Discussions 或 Gitter 在线讨论 🍻 GitHub Issues 提交错误报告 🐛 GitHub Feature 表新功能的想法 ✨ 同时国内用户也可加入 QQ 群交流： 604710815
+]]></content>
+  </entry>
+  
+  <entry>
+    <title>站点示例</title>
+    <url>https://chaleaoch.com/flinks.html</url>
+    <categories>
+    </categories>
+    <tags>
+    </tags>
+    <content type="html"><![CDATA[如想要交换友情链接，请在评论区留下你的站点信息，格式参考如下：
+名称： NexT 主题 说明： 保持简单的易用性和强大的功能。 站标： https://hugo-next.eu.org/imgs/hugo_next_avatar.png 网址： https://hugo-next.eu.org ]]></content>
+  </entry>
+  
+</search>
