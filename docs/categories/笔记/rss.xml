@@ -16,5 +16,14 @@
       <description>在 go 语言中,所有类型都是值传递, 这个知识在几乎所有 go 语法书中都有介绍. 但是切片和 map 这俩数据结构在做为函数参数的时候,可以通过形参改变实参. 这</description>
     </item>
     
+    <item>
+      <title>大话paxos</title>
+      <link>https://chaleaoch.com/post/%E5%A4%A7%E8%AF%9Dpaxos/</link>
+      <pubDate>Sun, 21 Aug 2022 22:09:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/%E5%A4%A7%E8%AF%9Dpaxos/</guid>
+      <description>一篇笔记. 不够严谨. paxos 是一个共识算法, 大白话理解就是一个系统中的所有节点, 对一件事达成共识. 这件事可能是一个动作, 譬如 +1, 也可能是一个值 譬如 set</description>
+    </item>
+    
   </channel>
 </rss>
