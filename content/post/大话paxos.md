@@ -2,8 +2,8 @@
 title: "大话paxos"
 description: "大话paxos"
 keywords: "paxos"
-date: 2022-08-21T22:09:00+08:00
-lastmod: 2022-08-21T22:09:00+08:00
+date: 2022-12-03T13:49:00+08:00
+lastmod: 2022-12-03T13:49:00+08:00
 
 categories:
   - 笔记
