@@ -6,7 +6,16 @@
     <description>Recent content in 笔记 on Chaleaoch&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 21 Aug 2022 22:09:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/categories/%E7%AC%94%E8%AE%B0/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Dec 2022 13:49:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/categories/%E7%AC%94%E8%AE%B0/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>大话paxos</title>
+      <link>https://chaleaoch.com/post/%E5%A4%A7%E8%AF%9Dpaxos/</link>
+      <pubDate>Sat, 03 Dec 2022 13:49:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/%E5%A4%A7%E8%AF%9Dpaxos/</guid>
+      <description>一篇笔记. 不够严谨. paxos 是一个共识算法, 大白话理解就是一个系统中的所有节点, 对一件事达成共识. 这件事可能是一个动作, 譬如 +1, 也可能是一个值 譬如 set</description>
+    </item>
+    
     <item>
       <title>go切片做为函数参数需要知道的一些知识</title>
       <link>https://chaleaoch.com/post/go%E5%88%87%E7%89%87%E5%81%9A%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86/</link>

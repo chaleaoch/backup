@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Chaleaoch&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 29 Nov 2022 19:44:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/post/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Dec 2022 13:49:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/post/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>大话paxos</title>
+      <link>https://chaleaoch.com/post/%E5%A4%A7%E8%AF%9Dpaxos/</link>
+      <pubDate>Sat, 03 Dec 2022 13:49:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/%E5%A4%A7%E8%AF%9Dpaxos/</guid>
+      <description>一篇笔记. 不够严谨. paxos 是一个共识算法, 大白话理解就是一个系统中的所有节点, 对一件事达成共识. 这件事可能是一个动作, 譬如 +1, 也可能是一个值 譬如 set</description>
+    </item>
+    
     <item>
       <title>python对属性的搜索优先级</title>
       <link>https://chaleaoch.com/post/python%E5%AF%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E6%90%9C%E7%B4%A2%E4%BC%98%E5%85%88%E7%BA%A7/</link>

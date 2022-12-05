@@ -2,6 +2,22 @@
 <search>
   
   <entry>
+    <title>大话paxos</title>
+    <url>https://chaleaoch.com/post/%E5%A4%A7%E8%AF%9Dpaxos/</url>
+    <categories><category>笔记</category>
+    </categories>
+    <tags>
+      <tag>理论派</tag>
+    </tags>
+    <content type="html"><![CDATA[一篇笔记. 不够严谨.
+paxos 是一个共识算法, 大白话理解就是一个系统中的所有节点, 对一件事达成共识. 这件事可能是一个动作, 譬如 +1, 也可能是一个值 譬如 set key=value 应用场景: 有一组状态机, 譬如 redis. 对 redis 进行一系列的操作 [+1,-1,+1,-1,+1,-1,+1,-1,+1,-1,+1,-1,...] 我们要保证 redis 集群中的所有节点,收到的消息的顺序是一致的.
+容错模型:
+非拜占庭网络, 也就是说没有黑客恶意修改数据. 允许节点损坏和网络延迟. paxos 中的角色:
+proposer, 提出提案(一件事)的人. 下图中的吴凡和李峰. acceptor, 做出决策的人, 很多 proposer 会提交很多提案, 但是只有一个提案会被接受(只有这样才可能达成共识). acceptor 就是那个做出决策的人(们)., 下图中的中间三个人,冯刚,张某和陈哥. learner, 不提出提案, 只参与学习. 类似粉丝. 下图没有体现. 提示: 同一个节点可以兼任上面三个角色, 也就是说, 一个节点既可以提出提案,也可以做出决策.
+大话一个例子: 吴凡和李峰分别提出了提案. 最后所有人达成共识. 下图只是一种比较典型的时序场景, 实际场景远比下图要复杂的多. 精力有限无法全部画出. 最后的学习阶段比较简单. 就是当一轮决策产生之后,learner 向 accepter 学习一下就行了. 这里不是重点. ]]></content>
+  </entry>
+  
+  <entry>
     <title>python对属性的搜索优先级</title>
     <url>https://chaleaoch.com/post/python%E5%AF%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E6%90%9C%E7%B4%A2%E4%BC%98%E5%85%88%E7%BA%A7/</url>
     <categories><category>default</category>
