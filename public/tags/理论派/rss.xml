@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>理论派 on Chaleaoch&#39;s Blog</title>
+    <link>https://chaleaoch.com/tags/%E7%90%86%E8%AE%BA%E6%B4%BE/</link>
+    <description>Recent content in 理论派 on Chaleaoch&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 21 Aug 2022 22:09:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/tags/%E7%90%86%E8%AE%BA%E6%B4%BE/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>大话paxos</title>
+      <link>https://chaleaoch.com/post/%E5%A4%A7%E8%AF%9Dpaxos/</link>
+      <pubDate>Sun, 21 Aug 2022 22:09:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/%E5%A4%A7%E8%AF%9Dpaxos/</guid>
+      <description>一篇笔记. 不够严谨. paxos 是一个共识算法, 大白话理解就是一个系统中的所有节点, 对一件事达成共识. 这件事可能是一个动作, 譬如 +1, 也可能是一个值 譬如 set</description>
+    </item>
+    
+  </channel>
+</rss>
