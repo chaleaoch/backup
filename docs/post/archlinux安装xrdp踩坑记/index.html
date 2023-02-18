@@ -300,7 +300,7 @@
   <span class="post-meta-item-icon">
     <i class="far fa-file-word"></i>
   </span>
-  <span class="post-meta-item-text">字数：</span><span>213</span>
+  <span class="post-meta-item-text">字数：</span><span>243</span>
 </span>
     
 <span class="post-meta-item" title="阅读">
@@ -333,41 +333,95 @@
 <ol>
 <li>安装</li>
 </ol>
-<pre tabindex="0"><code>yay -S xrdp xorgxrdp
-</code></pre><ol start="2">
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>yay -S xrdp xorgxrdp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
 <li><code>cat /etc/X11/Xwrapper.config</code></li>
 </ol>
-<pre tabindex="0"><code>allowed_users=anybody
-</code></pre><ol start="3">
-<li>新版 0.9.21.1-1 需要 <code>cat /etc/xrdp/sesman.ini</code></li>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>allowed_users=anybody
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>新版0.9.21.1-1 需要 <code>cat /etc/xrdp/sesman.ini</code></li>
 </ol>
-<pre tabindex="0"><code>[Xorg]
-# 其他不变
-param=/usr/lib/Xorg
-</code></pre><ol start="4">
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>[Xorg]
+</span></span><span style="display:flex;"><span># 其他不变
+</span></span><span style="display:flex;"><span>param=/usr/lib/Xorg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
 <li><code>sudo pacman -S xorg-xinit</code></li>
 <li><code>cp /etc/X11/xinit/xinitrc ~/.xinitrc</code></li>
 <li><code>cat ~/.xinitrc</code> 最后几行</li>
 </ol>
-<pre tabindex="0"><code>#twm &amp;
-#xclock -geometry 50x50-1+1 &amp;
-#xterm -geometry 80x50+494+51 &amp;
-#xterm -geometry 80x20+494-0 &amp;
-#exec xterm -geometry 80x66+0+0 -name login
-exec dbus-run-session -- startplasma-x11
-</code></pre><ol start="7">
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>#twm &amp;
+</span></span><span style="display:flex;"><span>#xclock -geometry 50x50-1+1 &amp;
+</span></span><span style="display:flex;"><span>#xterm -geometry 80x50+494+51 &amp;
+</span></span><span style="display:flex;"><span>#xterm -geometry 80x20+494-0 &amp;
+</span></span><span style="display:flex;"><span>#exec xterm -geometry 80x66+0+0 -name login
+</span></span><span style="display:flex;"><span>exec dbus-run-session -- startplasma-x11
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="7">
 <li>常规操作</li>
 </ol>
-<pre tabindex="0"><code>systemctl enable xrdp
-systemctl enable xrdp-sesman
-systemctl restart xrdp
-systemctl restart xrdp-sesman
-</code></pre><p>问题出在第 4 和 5 步, 其实网上很多有类似提示,但是新安装的 arch 是没有这个文件的. 安装上即可.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>systemctl enable xrdp
+</span></span><span style="display:flex;"><span>systemctl enable xrdp-sesman
+</span></span><span style="display:flex;"><span>systemctl restart xrdp
+</span></span><span style="display:flex;"><span>systemctl restart xrdp-sesman
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>问题出在第4和5步, 其实网上很多有类似提示,但是新安装的arch是没有这个文件的. 安装上即可.</p>
 <p>以下是关键字. 如果你在<code>sudo systemctl status xrdp</code>中遇到类似关键字, 那差不多咱们遇到的是同一个问题.</p>
-<pre tabindex="0"><code>[ERROR] xrdp_mm_chansrv_connect: error in trans_connect chan
-Feb 18 00:28:13 pc xrdp[30146]: [ERROR] SSL_shutdown: Failure in SSL library (protocol error?)
-Feb 18 00:28:13 pc xrdp[30146]: [ERROR] SSL: error:0A000123:SSL routines::application data after close notify
-</code></pre>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>[ERROR] xrdp_mm_chansrv_connect: error in trans_connect chan
+</span></span><span style="display:flex;"><span>Feb 18 00:28:13 pc xrdp[30146]: [ERROR] SSL_shutdown: Failure in SSL library (protocol error?)
+</span></span><span style="display:flex;"><span>Feb 18 00:28:13 pc xrdp[30146]: [ERROR] SSL: error:0A000123:SSL routines::application data after close notify
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 
     </div>
     <footer class="post-footer">
