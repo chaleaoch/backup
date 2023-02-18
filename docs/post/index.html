@@ -107,7 +107,7 @@
     </li>
     <li class="menu-item menu-item-archives">
       <a href="/archives/" class="hvr-icon-pulse " rel="section"><i class="fa fa-archive hvr-icon"></i>归档
-        <span class="badge">6</span>
+        <span class="badge">7</span>
       </a>
     </li>
     <li class="menu-item menu-item-search">
@@ -172,7 +172,7 @@
   <nav class="site-state">
     <div class="site-state-item site-state-posts">
       <a href="/archives/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -184,7 +184,7 @@
     </div>
     <div class="site-state-item site-state-tags">
       <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span>
       </a>
     </div>
@@ -593,6 +593,76 @@
       
 <div class="post-button">
   <a class="btn" href="/post/hello-world/#more" rel="contents">
+    阅读全文 &raquo;
+  </a>
+</div>
+<div class="post-eof"></div>
+    </footer>
+  </article>
+</div>
+  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://chaleaoch.com/post/archlinux%E5%AE%89%E8%A3%85xrdp%E8%B8%A9%E5%9D%91%E8%AE%B0/">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/imgs/128.png">
+      <meta itemprop="name" content="chaleaoch">
+    </span>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chaleaoch">
+      <meta itemprop="description" content="chaleaoch的博客">
+    </span>
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="archlinux安装xrdp踩坑记">
+      <meta itemprop="description" content="archlinux安装xrdp踩坑记">
+    </span>
+    <header class="post-header">
+       <h2 class="post-title" itemprop="name headline">
+  <a href="/post/archlinux%E5%AE%89%E8%A3%85xrdp%E8%B8%A9%E5%9D%91%E8%AE%B0/" itemprop="url" class="post-title-link">archlinux安装xrdp踩坑记</a> </h2> <div class="post-meta-container">
+  <div class="post-meta-items">
+    
+
+
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-calendar"></i>
+  </span>
+  <span class="post-meta-item-text">发表于：</span>
+  <time title="发表于：2022-02-18 16:41:00 &#43;0800 &#43;0800" itemprop="dateCreated datePublished" datetime="2022-02-18 16:41:00 &#43;0800 &#43;0800">2022-02-18</time>
+</span>
+    
+
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-calendar-check"></i>
+  </span>
+  <span class="post-meta-item-text">更新于：</span>
+  <time title="修改时间：2022-02-18T16:42:00&#43;08:00" itemprop="dateModified" datetime="2022-02-18T16:42:00&#43;08:00">2022-02-18</time>
+</span>
+    
+<span class="post-meta-item">
+  <span class="post-meta-item-icon">
+    <i class="far fa-folder-open"></i>
+  </span>
+  <span class="post-meta-item-text">分类于：</span>
+  <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+    <a href="/categories/default" itemprop="url" rel="index">
+      <span itemprop="name">default</span>
+    </a>
+  </span>
+</span>
+  </div>
+</div>
+
+    </header>
+    <div class="post-body" itemprop="articleBody">
+      
+  先记录步骤, 最后说明哪里踩坑. 安装 yay -S xrdp xorgxrdp cat /etc/X11/Xwrapper.config allowed_users=anybody 新版 0.9.21.1-1 需要 cat /etc/xrdp/sesman.ini [Xorg] # 其他不变 param=/usr/lib/Xorg sudo pacman -S xorg-xinit cp /etc/X11/xinit/xinitrc ~/.xinitrc cat ~/.xinitrc 最后几行 #twm &amp; #xclock -geometry 50x50-1+1 &amp; #xterm -geometry 80x50+494+51 &amp; #xterm -geometry 80x20+494-0 &amp; #exec xterm -geometry 80x66+0+0 -name
+
+    </div>
+    <footer class="post-footer">
+      
+<div class="post-button">
+  <a class="btn" href="/post/archlinux%E5%AE%89%E8%A3%85xrdp%E8%B8%A9%E5%9D%91%E8%AE%B0/#more" rel="contents">
     阅读全文 &raquo;
   </a>
 </div>

@@ -80,6 +80,15 @@
     </item>
     
     <item>
+      <title>archlinux安装xrdp踩坑记</title>
+      <link>https://chaleaoch.com/post/archlinux%E5%AE%89%E8%A3%85xrdp%E8%B8%A9%E5%9D%91%E8%AE%B0/</link>
+      <pubDate>Fri, 18 Feb 2022 16:41:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/archlinux%E5%AE%89%E8%A3%85xrdp%E8%B8%A9%E5%9D%91%E8%AE%B0/</guid>
+      <description>先记录步骤, 最后说明哪里踩坑. 安装 yay -S xrdp xorgxrdp cat /etc/X11/Xwrapper.config allowed_users=anybody 新版 0.9.21.1-1 需要 cat /etc/xrdp/sesman.ini [Xorg] # 其他不变 param=/usr/lib/Xorg sudo pacman -S xorg-xinit cp /etc/X11/xinit/xinitrc ~/.xinitrc cat ~/.xinitrc 最后几行 #twm &amp;amp; #xclock -geometry 50x50-1+1 &amp;amp; #xterm -geometry 80x50+494+51 &amp;amp; #xterm -geometry 80x20+494-0 &amp;amp; #exec xterm -geometry 80x66+0+0 -name</description>
+    </item>
+    
+    <item>
       <title>站点示例</title>
       <link>https://chaleaoch.com/flinks.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
