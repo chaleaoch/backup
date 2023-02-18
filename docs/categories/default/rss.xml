@@ -6,7 +6,16 @@
     <description>Recent content in default on Chaleaoch&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 29 Nov 2022 19:44:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/categories/default/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Feb 2023 16:41:00 +0800</lastBuildDate><atom:link href="https://chaleaoch.com/categories/default/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>archlinux安装xrdp踩坑记</title>
+      <link>https://chaleaoch.com/post/archlinux%E5%AE%89%E8%A3%85xrdp%E8%B8%A9%E5%9D%91%E8%AE%B0/</link>
+      <pubDate>Sat, 18 Feb 2023 16:41:00 +0800</pubDate>
+      
+      <guid>https://chaleaoch.com/post/archlinux%E5%AE%89%E8%A3%85xrdp%E8%B8%A9%E5%9D%91%E8%AE%B0/</guid>
+      <description>先记录步骤, 最后说明哪里踩坑. 安装 yay -S xrdp xorgxrdp cat /etc/X11/Xwrapper.config allowed_users=anybody 新版 0.9.21.1-1 需要 cat /etc/xrdp/sesman.ini [Xorg] # 其他不变 param=/usr/lib/Xorg sudo pacman -S xorg-xinit cp /etc/X11/xinit/xinitrc ~/.xinitrc cat ~/.xinitrc 最后几行 #twm &amp;amp; #xclock -geometry 50x50-1+1 &amp;amp; #xterm -geometry 80x50+494+51 &amp;amp; #xterm -geometry 80x20+494-0 &amp;amp; #exec xterm -geometry 80x66+0+0 -name</description>
+    </item>
+    
     <item>
       <title>python对属性的搜索优先级</title>
       <link>https://chaleaoch.com/post/python%E5%AF%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E6%90%9C%E7%B4%A2%E4%BC%98%E5%85%88%E7%BA%A7/</link>
@@ -32,15 +41,6 @@
       
       <guid>https://chaleaoch.com/post/%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B8%A6%E6%8F%92%E4%BB%B6%E7%9A%84flask%E5%BA%94%E7%94%A8/</guid>
       <description>起因 事情的起因是这样的, 曾经维护过一个别人做的 flask 项目,引用了大量的插件, 在维护过程中需要调查插件的源码来解决问题, 发现有的插件功能很单一,但</description>
-    </item>
-    
-    <item>
-      <title>archlinux安装xrdp踩坑记</title>
-      <link>https://chaleaoch.com/post/archlinux%E5%AE%89%E8%A3%85xrdp%E8%B8%A9%E5%9D%91%E8%AE%B0/</link>
-      <pubDate>Fri, 18 Feb 2022 16:41:00 +0800</pubDate>
-      
-      <guid>https://chaleaoch.com/post/archlinux%E5%AE%89%E8%A3%85xrdp%E8%B8%A9%E5%9D%91%E8%AE%B0/</guid>
-      <description>先记录步骤, 最后说明哪里踩坑. 安装 yay -S xrdp xorgxrdp cat /etc/X11/Xwrapper.config allowed_users=anybody 新版 0.9.21.1-1 需要 cat /etc/xrdp/sesman.ini [Xorg] # 其他不变 param=/usr/lib/Xorg sudo pacman -S xorg-xinit cp /etc/X11/xinit/xinitrc ~/.xinitrc cat ~/.xinitrc 最后几行 #twm &amp;amp; #xclock -geometry 50x50-1+1 &amp;amp; #xterm -geometry 80x50+494+51 &amp;amp; #xterm -geometry 80x20+494-0 &amp;amp; #exec xterm -geometry 80x66+0+0 -name</description>
     </item>
     
   </channel>

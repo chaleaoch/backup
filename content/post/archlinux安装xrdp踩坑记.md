@@ -2,8 +2,8 @@
 title: "archlinux安装xrdp踩坑记"
 description: "archlinux安装xrdp踩坑记"
 keywords: "archlinux,xrdp"
-date: 2022-02-18T16:41:00+08:00
-lastmod: 2022-02-18T16:42:00+08:00
+date: 2023-02-18T16:41:00+08:00
+lastmod: 2023-02-18T16:42:00+08:00
 
 categories:
   - default

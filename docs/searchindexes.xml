@@ -2,6 +2,20 @@
 <search>
   
   <entry>
+    <title>archlinux安装xrdp踩坑记</title>
+    <url>https://chaleaoch.com/post/archlinux%E5%AE%89%E8%A3%85xrdp%E8%B8%A9%E5%9D%91%E8%AE%B0/</url>
+    <categories><category>default</category>
+    </categories>
+    <tags>
+      <tag>archlinux</tag>
+    </tags>
+    <content type="html"><![CDATA[先记录步骤, 最后说明哪里踩坑.
+安装 yay -S xrdp xorgxrdp cat /etc/X11/Xwrapper.config allowed_users=anybody 新版 0.9.21.1-1 需要 cat /etc/xrdp/sesman.ini [Xorg] # 其他不变 param=/usr/lib/Xorg sudo pacman -S xorg-xinit cp /etc/X11/xinit/xinitrc ~/.xinitrc cat ~/.xinitrc 最后几行 #twm &amp; #xclock -geometry 50x50-1+1 &amp; #xterm -geometry 80x50+494+51 &amp; #xterm -geometry 80x20+494-0 &amp; #exec xterm -geometry 80x66+0+0 -name login exec dbus-run-session -- startplasma-x11 常规操作 systemctl enable xrdp systemctl enable xrdp-sesman systemctl restart xrdp systemctl restart xrdp-sesman 问题出在第 4 和 5 步, 其实网上很多有类似提示,但是新安装的 arch 是没有这个文件的. 安装上即可.
+以下是关键字. 如果你在sudo systemctl status xrdp中遇到类似关键字, 那差不多咱们遇到的是同一个问题.
+[ERROR] xrdp_mm_chansrv_connect: error in trans_connect chan Feb 18 00:28:13 pc xrdp[30146]: [ERROR] SSL_shutdown: Failure in SSL library (protocol error?) Feb 18 00:28:13 pc xrdp[30146]: [ERROR] SSL: error:0A000123:SSL routines::application data after close notify ]]></content>
+  </entry>
+  
+  <entry>
     <title>大话paxos</title>
     <url>https://chaleaoch.com/post/%E5%A4%A7%E8%AF%9Dpaxos/</url>
     <categories><category>笔记</category>
@@ -125,20 +139,6 @@ flask apscheduler 再譬如 scheduler src/extentioons.py
 我们的愿景 延续 NexT 经典的黑白调搭配，保持简单的易用性及强大的功能。
 使用反馈 加入 GitHub Discussions 或 Gitter 在线讨论 🍻 GitHub Issues 提交错误报告 🐛 GitHub Feature 表新功能的想法 ✨ 同时国内用户也可加入 QQ 群交流： 604710815
 ]]></content>
-  </entry>
-  
-  <entry>
-    <title>archlinux安装xrdp踩坑记</title>
-    <url>https://chaleaoch.com/post/archlinux%E5%AE%89%E8%A3%85xrdp%E8%B8%A9%E5%9D%91%E8%AE%B0/</url>
-    <categories><category>default</category>
-    </categories>
-    <tags>
-      <tag>archlinux</tag>
-    </tags>
-    <content type="html"><![CDATA[先记录步骤, 最后说明哪里踩坑.
-安装 yay -S xrdp xorgxrdp cat /etc/X11/Xwrapper.config allowed_users=anybody 新版 0.9.21.1-1 需要 cat /etc/xrdp/sesman.ini [Xorg] # 其他不变 param=/usr/lib/Xorg sudo pacman -S xorg-xinit cp /etc/X11/xinit/xinitrc ~/.xinitrc cat ~/.xinitrc 最后几行 #twm &amp; #xclock -geometry 50x50-1+1 &amp; #xterm -geometry 80x50+494+51 &amp; #xterm -geometry 80x20+494-0 &amp; #exec xterm -geometry 80x66+0+0 -name login exec dbus-run-session -- startplasma-x11 常规操作 systemctl enable xrdp systemctl enable xrdp-sesman systemctl restart xrdp systemctl restart xrdp-sesman 问题出在第 4 和 5 步, 其实网上很多有类似提示,但是新安装的 arch 是没有这个文件的. 安装上即可.
-以下是关键字. 如果你在sudo systemctl status xrdp中遇到类似关键字, 那差不多咱们遇到的是同一个问题.
-[ERROR] xrdp_mm_chansrv_connect: error in trans_connect chan Feb 18 00:28:13 pc xrdp[30146]: [ERROR] SSL_shutdown: Failure in SSL library (protocol error?) Feb 18 00:28:13 pc xrdp[30146]: [ERROR] SSL: error:0A000123:SSL routines::application data after close notify ]]></content>
   </entry>
   
   <entry>
